@@ -4,13 +4,14 @@ import Alert from "react-bootstrap/Alert";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import axios, { AxiosError } from "axios";
-import { useSignIn } from "react-auth-kit";
-import { useNavigate } from "react-router-dom";
+import { useSignIn, useIsAuthenticated } from "react-auth-kit";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
   const [loginError, setLoginError] = useState("");
   const signIn = useSignIn();
   const navigate = useNavigate();
+  const isAuthenticated = useIsAuthenticated();
   const {
     register,
     handleSubmit,
@@ -37,6 +38,10 @@ export default function LoginPage() {
       } else if (err && err instanceof Error) setLoginError(err.message);
     }
   };
+
+  if (isAuthenticated()) {
+    return <Navigate to="/encoder" />;
+  }
 
   return (
     <div className="container h-100 flex-center">
