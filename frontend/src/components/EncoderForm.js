@@ -10,6 +10,7 @@ class Result {
   constructor(input, output) {
     this.input = input;
     this.output = output;
+    this.id = crypto.randomUUID;
   }
 }
 
@@ -18,6 +19,7 @@ export default function EncoderForm({ setEncodedStrings }) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
   const [reqError, setReqError] = useState("");
@@ -32,6 +34,7 @@ export default function EncoderForm({ setEncodedStrings }) {
           Authorization: auth,
         },
       });
+      reset();
 
       const result = new Result(inputString, response.data);
 
