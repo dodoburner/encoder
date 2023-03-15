@@ -1,7 +1,7 @@
 module.exports = function encodeString(string) {
   let result = "";
   let count = 1;
-  const str = string.toUpperCase().trim();
+  const str = string.toUpperCase();
 
   for (let i = 0; i < str.length; i++) {
     if (str[i] === str[i + 1]) {

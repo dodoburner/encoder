@@ -1,5 +1,5 @@
 const express = require("express");
-const { encodeRouter } = require("./encode");
+const { coderRouter } = require("./coder");
 const app = express();
 const port = 3000;
 
@@ -7,7 +7,7 @@ const login = require("./login");
 
 app.use(express.json());
 
-app.use("/encode", encodeRouter);
+app.use("/coder", coderRouter);
 
 app.post("/login", login);
 
