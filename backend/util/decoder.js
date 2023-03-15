@@ -1,9 +1,10 @@
 module.exports = function decode(encodedString) {
   let result = "";
+  let str = encodedString.toUpperCase();
 
-  for (let i = 0; i < encodedString.length; i += 2) {
-    const char = encodedString[i];
-    const num = encodedString[i + 1];
+  for (let i = 0; i < str.length; i += 2) {
+    const char = str[i];
+    const num = str[i + 1];
 
     result += char.repeat(num);
   }

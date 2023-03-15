@@ -23,14 +23,14 @@ coderRouter.post("/encode", (req, res) => {
 });
 
 coderRouter.post("/decode", (req, res) => {
-  const { encodedString } = req.body;
-  const regex = /^([A-Z]\d+)+$/;
+  const { inputString } = req.body;
+  const regex = /^([A-Za-z]\d+)+$/;
 
-  if (!regex.test(encodedString)) {
+  if (!regex.test(inputString)) {
     return res.status(400).json("The string must be a valid encoded string!");
   }
 
-  const result = decodeString(encodedString);
+  const result = decodeString(inputString);
 
   return res.status(200).json(result);
 });
