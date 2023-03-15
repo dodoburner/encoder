@@ -7,7 +7,7 @@ import axios, { AxiosError } from "axios";
 import { useSignIn } from "react-auth-kit";
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function LoginPage() {
   const [loginError, setLoginError] = useState("");
   const signIn = useSignIn();
   const navigate = useNavigate();

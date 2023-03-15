@@ -5,17 +5,13 @@ import Alert from "react-bootstrap/Alert";
 import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
 import { useAuthHeader } from "react-auth-kit";
+import Result from "../Result";
 
-class Result {
-  constructor(input, output) {
-    this.input = input;
-    this.output = output;
-    this.id = crypto.randomUUID;
-  }
-}
-
-export default function EncoderForm({ setEncodedStrings }) {
-  const authHeader = useAuthHeader();
+export default function EncodeDecodeForm({
+  setEncodedStrings,
+  setDecodedStrings,
+  isOnEncoderPage,
+}) {
   const {
     register,
     handleSubmit,
@@ -23,22 +19,51 @@ export default function EncoderForm({ setEncodedStrings }) {
     formState: { errors },
   } = useForm();
   const [reqError, setReqError] = useState("");
+  const authHeader = useAuthHeader();
+  let pageText;
+  let invalidInputMsg;
+  let pattern;
+
+  if (isOnEncoderPage) {
+    pageText =
+      "Encode a string! A string must contain only alphabetic characters!";
+    invalidInputMsg = "Please enter only alphabetic characters";
+    pattern = /^[A-Za-z]+$/;
+  } else {
+    pageText = "Decode a string! A string must be a valid encoded string!";
+
+    invalidInputMsg = "Please enter a valid encoded string!";
+    pattern = /^([A-Za-z]\d+)+$/;
+  }
 
   const onSubmit = async (data) => {
     const auth = authHeader().replace("string ", "");
     const { inputString } = data;
 
     try {
-      const response = await axios.post("/coder/encode", data, {
-        headers: {
-          Authorization: auth,
-        },
-      });
+      let response;
+      let result;
+      if (isOnEncoderPage) {
+        response = await axios.post("/coder/encode", data, {
+          headers: {
+            Authorization: auth,
+          },
+        });
+
+        result = new Result(inputString, response.data);
+        setEncodedStrings((prev) => [...prev, result]);
+      } else {
+        response = await axios.post("/coder/decode", data, {
+          headers: {
+            Authorization: auth,
+          },
+        });
+
+        result = new Result(inputString, response.data);
+        setDecodedStrings((prev) => [...prev, result]);
+      }
+
       reset();
-
-      const result = new Result(inputString, response.data);
-
-      setEncodedStrings((prev) => [...prev, result]);
     } catch (err) {
       console.log("Error: ", err);
 
@@ -49,7 +74,7 @@ export default function EncoderForm({ setEncodedStrings }) {
   };
 
   return (
-    <div className="">
+    <div>
       {reqError && (
         <Alert variant="danger m-3 flex-center position-fixed top-0 mt-5 px-5">
           {reqError}
@@ -60,9 +85,7 @@ export default function EncoderForm({ setEncodedStrings }) {
         className="d-flex flex-column align-items-center"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <p>
-          Encode a string! A string must contain only alphabetic characters!
-        </p>
+        <p>{pageText}</p>
 
         <Form.Control
           type="text"
@@ -71,8 +94,8 @@ export default function EncoderForm({ setEncodedStrings }) {
           {...register("inputString", {
             required: "Please enter a string!",
             pattern: {
-              value: /^[A-Za-z]+$/,
-              message: "Please enter only alphabetic charachters",
+              value: pattern,
+              message: invalidInputMsg,
             },
           })}
           isInvalid={errors.inputString?.message}
@@ -83,7 +106,7 @@ export default function EncoderForm({ setEncodedStrings }) {
         </Form.Control.Feedback>
 
         <Button type="submit" className="mt-3">
-          ENCODE!
+          {isOnEncoderPage ? "ENCODE!" : "DECODE!"}
         </Button>
       </Form>
     </div>
