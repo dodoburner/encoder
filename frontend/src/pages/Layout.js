@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 export default function Layout() {
   return (
     <RequireAuth loginPath="/login">
-      <div className="container">
+      <div className="container h-100">
         <Navbar />
         <Outlet />
       </div>

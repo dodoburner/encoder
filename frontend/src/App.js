@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Encoder from "./pages/Encoder";
 import Layout from "./pages/Layout";
 import Login from "./pages/Login";
 
@@ -8,8 +9,8 @@ function App() {
       <Routes>
         <Route path="login" element={<Login />} />
 
-        <Route path="/" element={<Layout />}>
-          <Route path="encoder" element={<div>encoder</div>} />
+        <Route element={<Layout />}>
+          <Route path="encoder" element={<Encoder />} />
           <Route path="decoder" element={<div>decoder</div>} />
           <Route path="*" element={<div>You messed up</div>} />
         </Route>

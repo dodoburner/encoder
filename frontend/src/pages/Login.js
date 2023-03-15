@@ -11,7 +11,6 @@ export default function Login() {
   const [loginError, setLoginError] = useState("");
   const signIn = useSignIn();
   const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
@@ -24,8 +23,8 @@ export default function Login() {
 
       signIn({
         token: response.data.token,
-        expiresIn: 30,
-        tokenType: "Bearer",
+        expiresIn: 90,
+        tokenType: "string",
         authState: { email: data.email },
       });
 
@@ -42,7 +41,7 @@ export default function Login() {
   return (
     <div className="container h-100 flex-center">
       {loginError && (
-        <Alert variant="danger m-3 flex-center position-fixed top-0">
+        <Alert variant="danger m-3 flex-center position-fixed top-0 px-5">
           {loginError}
         </Alert>
       )}
