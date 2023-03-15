@@ -24,12 +24,12 @@ export default function Login() {
 
       signIn({
         token: response.data.token,
-        expiresIn: 3600,
+        expiresIn: 30,
         tokenType: "Bearer",
         authState: { email: data.email },
       });
 
-      navigate("/encode");
+      navigate("/encoder");
     } catch (err) {
       console.log("Error: ", err);
 
