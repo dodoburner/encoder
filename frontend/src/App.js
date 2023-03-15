@@ -6,8 +6,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={Layout}>
-          <Route path="login" element={Login} />
+        <Route path="login" element={<Login />} />
+
+        <Route path="/" element={<Layout />}>
+          <Route path="encoder" element={<div>encoder</div>} />
+          <Route path="decoder" element={<div>decoder</div>} />
+          <Route path="*" element={<div>You messed up</div>} />
         </Route>
       </Routes>
     </BrowserRouter>
