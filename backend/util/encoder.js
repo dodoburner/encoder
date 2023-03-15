@@ -4,7 +4,10 @@ module.exports = function encodeString(string) {
   const str = string.toUpperCase();
 
   for (let i = 0; i < str.length; i++) {
-    if (str[i] === str[i + 1]) {
+    if (count === 9) {
+      result += str[i] + count;
+      count = 1;
+    } else if (str[i] === str[i + 1]) {
       count++;
     } else {
       result += str[i] + count;

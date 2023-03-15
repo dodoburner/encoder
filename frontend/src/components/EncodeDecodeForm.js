@@ -33,7 +33,7 @@ export default function EncodeDecodeForm({
     pageText = "Decode a string! A string must be a valid encoded string!";
 
     invalidInputMsg = "Please enter a valid encoded string!";
-    pattern = /^([A-Za-z]\d+)+$/;
+    pattern = /^([A-Za-z]\d){1,}$/;
   }
 
   const onSubmit = async (data) => {
