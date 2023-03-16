@@ -4,7 +4,7 @@ import Layout from "./pages/Layout";
 import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
-function App() {  
+function App() {
   return (
     <BrowserRouter>
       <Routes>

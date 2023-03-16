@@ -10,7 +10,7 @@ export default function EncoderDecoderPage() {
   const isOnEncoderPage = location.pathname === "/encoder";
 
   return (
-    <div className="h-100 flex-column flex-center">
+    <div className="h-100 pt-5">
       <EncodeDecodeForm
         isOnEncoderPage={isOnEncoderPage}
         setEncodedStrings={setEncodedStrings}

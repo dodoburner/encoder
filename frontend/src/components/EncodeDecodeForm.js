@@ -82,10 +82,10 @@ export default function EncodeDecodeForm({
       )}
 
       <Form
-        className="d-flex flex-column align-items-center"
+        className="d-flex flex-column align-items-center mt-4 w-75 ms-auto me-auto"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <p>{pageText}</p>
+        <p className="fs-5">{pageText}</p>
 
         <Form.Control
           type="text"
