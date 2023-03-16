@@ -19,14 +19,17 @@ export default function LoginPage() {
   } = useForm();
 
   const onSubmit = async (data) => {
+    let { email, password } = data;
+    email = email[0].toLowerCase() + email.slice(1);
+
     try {
-      const response = await axios.post("/login", data);
+      const response = await axios.post("/login", { email, password });
 
       signIn({
         token: response.data.token,
         expiresIn: 90,
         tokenType: "string",
-        authState: { email: data.email },
+        authState: { email },
       });
 
       navigate("/encoder");
