@@ -27,7 +27,7 @@ export default function LoginPage() {
 
       signIn({
         token: response.data.token,
-        expiresIn: 90,
+        expiresIn: 1440,
         tokenType: "string",
         authState: { email },
       });
