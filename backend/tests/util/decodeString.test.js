@@ -1,4 +1,4 @@
-const decodeString = require("../util/decodeString");
+const decodeString = require("../../util/decodeString");
 
 describe("encode", () => {
   it("should decode a valid encoded string", () => {

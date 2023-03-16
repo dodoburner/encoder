@@ -23,7 +23,7 @@ export default function LoginPage() {
     email = email[0].toLowerCase() + email.slice(1);
 
     try {
-      const response = await axios.post("/login", { email, password });
+      const response = await axios.post("/auth/login", { email, password });
 
       signIn({
         token: response.data.token,

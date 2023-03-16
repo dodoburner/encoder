@@ -1,4 +1,4 @@
-const encodeString = require("../util/encodeString");
+const encodeString = require("../../util/encodeString");
 
 describe("encode", () => {
   it("should encode a valid string", () => {

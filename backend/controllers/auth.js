@@ -1,4 +1,4 @@
-module.exports = function login(req, res) {
+const login = (req, res) => {
   const { email, password } = req.body;
 
   if (
@@ -10,3 +10,5 @@ module.exports = function login(req, res) {
 
   return res.status(401).send("Login failed.");
 };
+
+module.exports = { login };
