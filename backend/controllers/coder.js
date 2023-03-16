@@ -22,7 +22,7 @@ const encode = (req, res) => {
 
 const decode = (req, res) => {
   const { inputString } = req.body;
-  const regex = /^([A-Za-z]\d){1,}$/;
+  const regex = /^([A-Za-z][1-9]){1,}$/;
 
   if (!inputString) {
     return res.status(400).json("You must provide an input string!");

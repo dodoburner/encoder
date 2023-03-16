@@ -63,6 +63,16 @@ describe("POST coder/decode", () => {
       expect(response.statusCode).toBe(400);
       expect(response.body).toBe("The string must be a valid encoded string!");
     });
+
+    it("should return a status of 400 if the string has a 0 in it", async () => {
+      const response = await request(app)
+        .post("/coder/decode")
+        .set("Authorization", "xyz0987654321")
+        .send({ inputString: "A0b9k2" });
+
+      expect(response.statusCode).toBe(400);
+      expect(response.body).toBe("The string must be a valid encoded string!");
+    });
   });
 
   describe("given a valid string", () => {

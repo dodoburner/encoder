@@ -33,7 +33,7 @@ export default function EncodeDecodeForm({
     pageText = "Decode a string! A string must be a valid encoded string!";
 
     invalidInputMsg = "Please enter a valid encoded string!";
-    pattern = /^([A-Za-z]\d){1,}$/;
+    pattern = /^([A-Za-z][1-9]){1,}$/;
   }
 
   const onSubmit = async (data) => {
@@ -43,7 +43,7 @@ export default function EncodeDecodeForm({
     try {
       let response;
       let result;
-      
+
       if (isOnEncoderPage) {
         response = await axios.post("/coder/encode", data, {
           headers: {
