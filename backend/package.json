@@ -4,8 +4,8 @@
   "description": "Some boilerplate for a take-home code challenge.",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
-    "test": "jest"
+    "start": "nodemon server.js",
+    "test": "jest --detectOpenHandles"
   },
   "dependencies": {
     "body-parser": "1.19.0",
