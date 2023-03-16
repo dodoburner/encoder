@@ -11,6 +11,10 @@ coderRouter.post("/encode", (req, res) => {
   const { inputString } = req.body;
   const regex = /^[A-Za-z]+$/;
 
+  if (!inputString) {
+    return res.status(400).json("You must provide an input string!");
+  }
+
   if (!regex.test(inputString)) {
     return res
       .status(400)
@@ -25,6 +29,10 @@ coderRouter.post("/encode", (req, res) => {
 coderRouter.post("/decode", (req, res) => {
   const { inputString } = req.body;
   const regex = /^([A-Za-z]\d){1,}$/;
+
+  if (!inputString) {
+    return res.status(400).json("You must provide an input string!");
+  }
 
   if (!regex.test(inputString)) {
     return res.status(400).json("The string must be a valid encoded string!");

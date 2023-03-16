@@ -10,7 +10,29 @@ describe("POST coder/encode", () => {
     expect(response.statusCode).toBe(401);
   });
 
-  describe("given a invalid string", () => {
+  describe("given no string", () => {
+    it("should return a status of 400 if there is no string provided", async () => {
+      const response = await request(app)
+        .post("/coder/decode")
+        .set("Authorization", "xyz0987654321")
+        .send({});
+
+      expect(response.statusCode).toBe(400);
+      expect(response.body).toBe("You must provide an input string!");
+    });
+
+    it("should return a status of 400 if the string is empty", async () => {
+      const response = await request(app)
+        .post("/coder/encode")
+        .set("Authorization", "xyz0987654321")
+        .send({ inputString: "" });
+
+      expect(response.statusCode).toBe(400);
+      expect(response.body).toBe("You must provide an input string!");
+    });
+  });
+
+  describe("given an invalid string", () => {
     it("should return a status of 400 if the string has a number", async () => {
       const response = await request(app)
         .post("/coder/encode")
@@ -28,18 +50,6 @@ describe("POST coder/encode", () => {
         .post("/coder/encode")
         .set("Authorization", "xyz0987654321")
         .send({ inputString: "AA$$$" });
-
-      expect(response.statusCode).toBe(400);
-      expect(response.body).toBe(
-        "The input string must have only alphabetic charachters!"
-      );
-    });
-
-    it("should return a status of 400 if the string is empty", async () => {
-      const response = await request(app)
-        .post("/coder/encode")
-        .set("Authorization", "xyz0987654321")
-        .send({ inputString: "" });
 
       expect(response.statusCode).toBe(400);
       expect(response.body).toBe(
