@@ -43,6 +43,7 @@ export default function EncodeDecodeForm({
     try {
       let response;
       let result;
+      
       if (isOnEncoderPage) {
         response = await axios.post("/coder/encode", data, {
           headers: {
