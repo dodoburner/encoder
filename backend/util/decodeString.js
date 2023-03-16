@@ -1,4 +1,4 @@
-module.exports = function decode(encodedString) {
+module.exports = function decodeString(encodedString) {
   let result = "";
   let str = encodedString.toUpperCase();
 

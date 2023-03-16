@@ -1,7 +1,7 @@
 const express = require("express");
 const authMiddleware = require("./middleware/authorization");
-const encodeString = require("./util/encoder");
-const decodeString = require("./util/decoder");
+const encodeString = require("./util/encodeString");
+const decodeString = require("./util/decodeString");
 
 const coderRouter = express.Router();
 
@@ -19,7 +19,7 @@ coderRouter.post("/encode", (req, res) => {
 
   const result = encodeString(inputString);
 
-  return res.status(200).json(result);
+  return res.status(201).json(result);
 });
 
 coderRouter.post("/decode", (req, res) => {
@@ -32,9 +32,7 @@ coderRouter.post("/decode", (req, res) => {
 
   const result = decodeString(inputString);
 
-  return res.status(200).json(result);
+  return res.status(201).json(result);
 });
 
-module.exports = {
-  coderRouter,
-};
+module.exports = coderRouter;
