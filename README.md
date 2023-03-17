@@ -23,11 +23,11 @@ For running tests navigate to the backend folder and run npm test
 Here is a list of some valuable resources I've used for the project:
 
 - For styling: [Bootstrap](https://getbootstrap.com/) and [React Boostrap](https://react-bootstrap.github.io/)
-  They provide easy resuable components and classes to style your app. Convenient for a simple app like this one.
+  They provide resuable components and classes to style your app. Convenient for a simple app like this one.
   <br>
 
 - For form handling: [React Hook Form](https://react-hook-form.com/)
-  Provides easy to use form validation and error handling.
+  Provides easy to use and good looking form validation and error handling.
   <br>
 
 - For auth state management: [React Auth Kit](https://authkit.arkadip.dev/)
